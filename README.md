@@ -33,6 +33,39 @@ user  0m0.770s
 sys 0m0.346s
 ```
 
-So we lost 10 seconds because of building two Docker images.
-But now clone the same repo somewhere else on the local machine.
+So we lost 10 seconds because of building two Docker images the first time.
+But any run after the first one is very fast
+
+```sh
+$ time ./build-docker-images.sh
+... first docker image with deps is already there, no changes
+... building second docker image by copying files
+... runs npm test in test-autochecker:0.12
+real  0m1.264s
+user  0m0.108s
+sys   0m0.053s
+```
+
+But now clone the same repo somewhere else on the local machine. Without running
+`npm install` run tests.
+
+```sh
+$ git clone <repo> test-npm-layers
+$ cd test-npm-layers
+$ time ./build-docker-images.sh
+... pulls docker deps from local Docker registry
+... runs tests
+real  0m0.941s
+user  0m0.130s
+sys 0m0.073s
+```
+
+Nice!
+
+We could probably make it even faster by mounting the current working folder into the
+container. But having an actual *built* containe allows us one more trick - the tests
+can be executed on *separate machine*. Thus you can keep working locally and when running
+the script, the built image could be pulled and executed from any other CI machine.
+
+
 
