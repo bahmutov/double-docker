@@ -8,10 +8,15 @@ PACKAGE_MD5=$(md5-cli package.json)
 echo "Package.json md5: $PACKAGE_MD5"
 
 NAME=test-autochecker
-docker build -t $NAME-npm-deps:$PACKAGE_MD5 -f DockerDeps .
-echo "Built NPM dependencies layer"
+IMAGE_WITH_DEPS_NAME=$NAME-npm-deps:$PACKAGE_MD5
 
-echo "FROM $NAME-npm-deps:$PACKAGE_MD5">DockerTestFile
+EXISTING_IMAGE=$(docker images -q $IMAGE_WITH_DEPS_NAME)
+if [ "$EXISTING_IMAGE" == "" ]; then
+  docker build -t $IMAGE_WITH_DEPS_NAME -f DockerDeps .
+  echo "Built NPM dependencies layer"
+fi
+
+echo "FROM $IMAGE_WITH_DEPS_NAME">DockerTestFile
 cat DockerNpmTest>>DockerTestFile
 
 docker build -t $NAME:$NODE_VERSION -f DockerTestFile .
