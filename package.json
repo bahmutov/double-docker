@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "autochecker": "TEST_LIMIT=1 autochecker 0.12 --verbose"
   },
   "keywords": [],
   "author": "",
