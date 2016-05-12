@@ -8,7 +8,7 @@
     "autochecker": "TEST_LIMIT=1 autochecker 0.12 --verbose"
   },
   "keywords": [],
-  "author": "",
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "babel": "6.5.2",

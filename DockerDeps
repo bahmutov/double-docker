@@ -1,5 +1,4 @@
-# in the future can template node version
-FROM mhart/alpine-node:0.12
+# FROM line is added to this file dynamically
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json .
