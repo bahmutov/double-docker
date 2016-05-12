@@ -1,0 +1,16 @@
+{
+  "name": "test-autochecker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "check-more-types": "2.21.0",
+    "lazy-ass": "1.4.0"
+  }
+}
