@@ -2,13 +2,13 @@
 
 set -e
 
+NAME=${PWD##*/}
 NODE_VERSION=0.12
 
 SHASUM=$(shasum package.json)
 PACKAGE_SHA=($SHASUM)
-echo "Package.json SHA: $PACKAGE_SHA"
+echo "$NAME package.json SHA: $PACKAGE_SHA"
 
-NAME=test-autochecker
 IMAGE_WITH_DEPS_NAME=$NAME-npm-deps:$PACKAGE_SHA
 
 EXISTING_IMAGE=$(docker images -q $IMAGE_WITH_DEPS_NAME)
