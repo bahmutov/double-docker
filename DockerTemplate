@@ -3,7 +3,6 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json .
 # Adding extra tools
-RUN apk add --update git
-RUN npm install
+# RUN npm install
 COPY . .
-RUN npm test
+CMD npm test
