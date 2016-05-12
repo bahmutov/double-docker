@@ -1,4 +1,4 @@
-FROM test-autochecker-npm-deps:9bc2de1f514c6ddbeeaefba42decc699
+FROM test-autochecker-npm-deps:808de4d5ca619670e34b26d6e93bcaa7a4e2da81
 # FROM test-autochecker-npm-deps:9bc2de1f514c6ddbeeaefba42decc699
 # RUN mkdir -p /usr/src/app
 # assuming this folder already has been created by npm deps

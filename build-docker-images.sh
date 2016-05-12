@@ -4,11 +4,12 @@ set -xe
 
 NODE_VERSION=0.12
 
-PACKAGE_MD5=$(md5-cli package.json)
-echo "Package.json md5: $PACKAGE_MD5"
+SHASUM=$(shasum package.json)
+PACKAGE_SHA=($SHASUM)
+echo "Package.json SHA: $PACKAGE_SHA"
 
 NAME=test-autochecker
-IMAGE_WITH_DEPS_NAME=$NAME-npm-deps:$PACKAGE_MD5
+IMAGE_WITH_DEPS_NAME=$NAME-npm-deps:$PACKAGE_SHA
 
 EXISTING_IMAGE=$(docker images -q $IMAGE_WITH_DEPS_NAME)
 if [ "$EXISTING_IMAGE" == "" ]; then
