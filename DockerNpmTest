@@ -1,0 +1,7 @@
+FROM test-autochecker-npm-deps:9bc2de1f514c6ddbeeaefba42decc699
+# RUN mkdir -p /usr/src/app
+# assuming this folder already has been created by npm deps
+WORKDIR /usr/src/app
+COPY package.json .
+COPY . .
+CMD npm test

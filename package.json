@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
-    "autochecker": "TEST_LIMIT=1 autochecker 0.12 --verbose"
+    "autochecker": "TEST_LIMIT=1 autochecker 0.12 --verbose",
+    "build-npm-deps-docker-image": "docker build -t test-autochecker/npm-deps-$NPM_DEPS ."
   },
   "keywords": [],
   "author": "",
