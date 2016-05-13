@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+#
+# Removes all docker containers and images
+# with our prefix
+#
+
 set -e
 
 CONTAINER_IDS=$(docker ps -a --filter "name=dd-" -q)
