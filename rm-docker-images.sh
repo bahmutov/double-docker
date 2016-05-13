@@ -10,6 +10,13 @@ else
   docker rm $CONTAINER_IDS
 fi
 
+DANGLING_IMAGES=$(docker images --filter "dangling=true" -q --no-trunc)
+if [ "$DANGLING_IMAGES" == "" ]; then
+  echo "No dangling images"
+else
+  docker rmi $DANGLING_IMAGES
+fi
+
 CHILD_IMAGES=$(docker images -q dd-child-*)
 if [ "$CHILD_IMAGES" == "" ]; then
   echo "No child images to remove"
