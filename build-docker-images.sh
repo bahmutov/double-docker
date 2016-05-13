@@ -17,7 +17,7 @@ IMAGE_WITH_DEPS_NAME=dd-npm-deps-$NAME-$NODE_VERSION:$PACKAGE_SHA
 
 EXISTING_IMAGE=$(docker images -q $IMAGE_WITH_DEPS_NAME)
 if [ "$EXISTING_IMAGE" == "" ]; then
-  echo "Base NPM dependencies image $EXISTING_IMAGE not found, building..."
+  echo "Base NPM dependencies image $IMAGE_WITH_DEPS_NAME not found, building..."
   echo "FROM mhart/alpine-node:$NODE_VERSION">DockerDepsTemp
   cat DockerDeps>>DockerDepsTemp
   docker build -t $IMAGE_WITH_DEPS_NAME -f DockerDepsTemp .
