@@ -5,9 +5,11 @@ set -e
 NAME=${PWD##*/}
 NODE_VERSION=$1
 if [ "$NODE_VERSION" == "" ]; then
-  echo "Using default Node version"
   NODE_VERSION=6
+  echo "Using default Node version $NODE_VERSION"
 fi
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # consider shrinkwrap if it exists
 if [ -f npm-shrinkwrap.json ]; then
@@ -24,7 +26,11 @@ EXISTING_IMAGE=$(docker images -q $IMAGE_WITH_DEPS_NAME)
 if [ "$EXISTING_IMAGE" == "" ]; then
   echo "Base NPM dependencies image $IMAGE_WITH_DEPS_NAME not found, building..."
   echo "FROM mhart/alpine-node:$NODE_VERSION">DockerDepsTemp
-  cat DockerDeps>>DockerDepsTemp
+  if [ -f .npmrc ]; then
+    cat $DIR/DockerDepsWithNpmrc>>DockerDepsTemp
+  else
+    cat $DIR/DockerDeps>>DockerDepsTemp
+  fi
   docker build -t $IMAGE_WITH_DEPS_NAME -f DockerDepsTemp .
   rm DockerDepsTemp
   echo "Built NPM dependencies image $IMAGE_WITH_DEPS_NAME"
@@ -33,7 +39,7 @@ else
 fi
 
 echo "FROM $IMAGE_WITH_DEPS_NAME">DockerTestFile
-cat DockerNpmTest>>DockerTestFile
+cat $DIR/DockerNpmTest>>DockerTestFile
 
 IMAGE_NAME=dd-child-$NAME:$NODE_VERSION
 docker build -t $IMAGE_NAME -f DockerTestFile .

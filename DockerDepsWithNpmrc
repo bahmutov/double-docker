@@ -1,0 +1,6 @@
+# FROM line is added to this file dynamically
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY .npmrc .
+COPY package.json .
+RUN npm install
