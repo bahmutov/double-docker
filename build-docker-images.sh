@@ -40,23 +40,8 @@ echo "Built docker image $IMAGE_NAME with source code"
 # running the built image
 #
 CONTAINER_NAME=dd-$NAME-$NODE_VERSION
-echo "Stopping and removing any existing containers for $CONTAINER_NAME"
 
-RUNNING_CONTAINER_IDS=$(docker ps --filter "name=$CONTAINER_NAME" -q)
-if [ "$RUNNING_CONTAINER_IDS" == "" ]; then
-  echo "No running containers to stop"
-else
-  echo "Stopping container $CONTAINER_NAME"
-  docker stop $RUNNING_CONTAINER_IDS
-fi
-
-CONTAINER_IDS=$(docker ps -a --filter "name=$CONTAINER_NAME" -q)
-if [ "$CONTAINER_IDS" == "" ]; then
-  echo "No containers to stop"
-else
-  echo "Removing container $CONTAINER_NAME"
-  docker rm $CONTAINER_IDS
-fi
+. $DIR/stop-container.sh
 
 echo "Running the tests in the final docker"
 echo "image $IMAGE_NAME in $CONTAINER_NAME"
