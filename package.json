@@ -14,7 +14,8 @@
     "babel": "6.5.2",
     "babel-cli": "6.8.0",
     "check-more-types": "2.21.0",
+    "express": "4.13.4",
     "lazy-ass": "1.4.0",
-    "express": "4.13.4"
+    "mocha": "2.4.5"
   }
 }
