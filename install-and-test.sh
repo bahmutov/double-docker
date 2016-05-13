@@ -12,16 +12,16 @@ fi
 # the folder with this script (for calling our utility scripts)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-. $DIR/compute-sha.sh
-. $DIR/build-base-image.sh
-. $DIR/build-test-image.sh
+. $DIR/utils/compute-sha.sh
+. $DIR/utils/build-base-image.sh
+. $DIR/utils/build-test-image.sh
 
 #
 # running the built image
 #
 CONTAINER_NAME=dd-$NAME-$NODE_VERSION
 
-. $DIR/stop-container.sh
+. $DIR/utils/stop-container.sh
 
 echo "Running the tests in the final docker"
 echo "image $IMAGE_NAME in $CONTAINER_NAME"

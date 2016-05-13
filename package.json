@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
+    "build": "echo Building the bundle ... done!",
     "autochecker": "TEST_LIMIT=1 autochecker 0.12 --verbose"
   },
   "keywords": [],
