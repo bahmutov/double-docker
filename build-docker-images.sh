@@ -6,7 +6,7 @@ NAME=${PWD##*/}
 NODE_VERSION=$1
 if [ "$NODE_VERSION" == "" ]; then
   echo "Using default Node version"
-  NODE_VERSION=0.12
+  NODE_VERSION=6
 fi
 
 SHASUM=$(shasum package.json)
@@ -34,8 +34,23 @@ docker build -t $IMAGE_NAME -f DockerTestFile .
 echo "Built docker image $IMAGE_NAME with source code"
 
 CONTAINER_NAME=dd-$NAME-$NODE_VERSION
-echo "Stopping and removing any existing containers"
-docker stop $CONTAINER_NAME || true
-docker rm $CONTAINER_NAME || true
+echo "Stopping and removing any existing containers for $CONTAINER_NAME"
+
+RUNNING_CONTAINER_IDS=$(docker ps --filter "name=$CONTAINER_NAME" -q)
+if [ "$RUNNING_CONTAINER_IDS" == "" ]; then
+  echo "No running containers to stop"
+else
+  echo "Stopping container $CONTAINER_NAME"
+  docker stop $RUNNING_CONTAINER_IDS
+fi
+
+CONTAINER_IDS=$(docker ps -a --filter "name=$CONTAINER_NAME" -q)
+if [ "$CONTAINER_IDS" == "" ]; then
+  echo "No containers to stop"
+else
+  echo "Removing container $CONTAINER_NAME"
+  docker rm $CONTAINER_IDS
+fi
+
 echo "Running final docker image $IMAGE_NAME in $CONTAINER_NAME"
 docker run --name $CONTAINER_NAME $IMAGE_NAME
