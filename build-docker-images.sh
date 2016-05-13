@@ -9,9 +9,10 @@ if [ "$NODE_VERSION" == "" ]; then
   echo "Using default Node version $NODE_VERSION"
 fi
 
+# the folder with this script (for calling our utility scripts)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# consider shrinkwrap if it exists
+# prefer using shrinkwrap if it exists
 if [ -f npm-shrinkwrap.json ]; then
   SHASUM=$(shasum npm-shrinkwrap.json)
 else
@@ -22,6 +23,9 @@ echo "$NAME package dependencies file SHA: $PACKAGE_SHA"
 
 IMAGE_WITH_DEPS_NAME=dd-npm-deps-$NAME-$NODE_VERSION:$PACKAGE_SHA
 
+#
+# building the base image with NPM dependencies if does not exist
+#
 EXISTING_IMAGE=$(docker images -q $IMAGE_WITH_DEPS_NAME)
 if [ "$EXISTING_IMAGE" == "" ]; then
   echo "Base NPM dependencies image $IMAGE_WITH_DEPS_NAME not found, building..."
@@ -38,6 +42,9 @@ else
   echo "Base NPM dependencies in existing image $IMAGE_WITH_DEPS_NAME"
 fi
 
+#
+# building derived image with current source and "npm test" command
+#
 echo "FROM $IMAGE_WITH_DEPS_NAME">DockerTestFile
 cat $DIR/DockerNpmTest>>DockerTestFile
 
@@ -46,6 +53,9 @@ docker build -t $IMAGE_NAME -f DockerTestFile .
 rm DockerTestFile
 echo "Built docker image $IMAGE_NAME with source code"
 
+#
+# running the built image
+#
 CONTAINER_NAME=dd-$NAME-$NODE_VERSION
 echo "Stopping and removing any existing containers for $CONTAINER_NAME"
 
