@@ -17,6 +17,6 @@
     "check-more-types": "2.21.0",
     "express": "4.13.4",
     "lazy-ass": "1.4.0",
-    "mocha": "2.4.5"
+    "mocha": "2.4.4"
   }
 }

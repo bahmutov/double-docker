@@ -8,9 +8,9 @@ if [ "$EXISTING_IMAGE" == "" ]; then
   echo "Base NPM dependencies image $IMAGE_WITH_DEPS_NAME not found, building..."
   echo "FROM mhart/alpine-node:$NODE_VERSION">DockerDepsTemp
   if [ -f .npmrc ]; then
-    cat $DIR/DockerDepsWithNpmrc>>DockerDepsTemp
+    cat $DIR/docker-files/DockerDepsWithNpmrc>>DockerDepsTemp
   else
-    cat $DIR/DockerDeps>>DockerDepsTemp
+    cat $DIR/docker-files/DockerDeps>>DockerDepsTemp
   fi
   docker build -t $IMAGE_WITH_DEPS_NAME -f DockerDepsTemp .
   rm DockerDepsTemp
