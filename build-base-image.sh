@@ -1,6 +1,8 @@
 #
 # building the base image with NPM dependencies if does not exist
 #
+IMAGE_WITH_DEPS_NAME=dd-npm-deps-$NAME-$NODE_VERSION:$PACKAGE_SHA
+
 EXISTING_IMAGE=$(docker images -q $IMAGE_WITH_DEPS_NAME)
 if [ "$EXISTING_IMAGE" == "" ]; then
   echo "Base NPM dependencies image $IMAGE_WITH_DEPS_NAME not found, building..."
@@ -16,3 +18,4 @@ if [ "$EXISTING_IMAGE" == "" ]; then
 else
   echo "Base NPM dependencies in existing image $IMAGE_WITH_DEPS_NAME"
 fi
+
