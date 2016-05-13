@@ -21,6 +21,7 @@ if [ "$EXISTING_IMAGE" == "" ]; then
   echo "FROM mhart/alpine-node:$NODE_VERSION">DockerDepsTemp
   cat DockerDeps>>DockerDepsTemp
   docker build -t $IMAGE_WITH_DEPS_NAME -f DockerDepsTemp .
+  rm DockerDepsTemp
   echo "Built NPM dependencies image $IMAGE_WITH_DEPS_NAME"
 else
   echo "Base NPM dependencies in existing image $IMAGE_WITH_DEPS_NAME"
@@ -31,6 +32,7 @@ cat DockerNpmTest>>DockerTestFile
 
 IMAGE_NAME=dd-child-$NAME:$NODE_VERSION
 docker build -t $IMAGE_NAME -f DockerTestFile .
+rm DockerTestFile
 echo "Built docker image $IMAGE_NAME with source code"
 
 CONTAINER_NAME=dd-$NAME-$NODE_VERSION
@@ -52,5 +54,6 @@ else
   docker rm $CONTAINER_IDS
 fi
 
-echo "Running final docker image $IMAGE_NAME in $CONTAINER_NAME"
+echo "Running the tests in the final docker"
+echo "image $IMAGE_NAME in $CONTAINER_NAME"
 docker run --name $CONTAINER_NAME $IMAGE_NAME
