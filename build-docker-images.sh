@@ -9,9 +9,14 @@ if [ "$NODE_VERSION" == "" ]; then
   NODE_VERSION=6
 fi
 
-SHASUM=$(shasum package.json)
+# consider shrinkwrap if it exists
+if [ -f npm-shrinkwrap.json ]; then
+  SHASUM=$(shasum npm-shrinkwrap.json)
+else
+  SHASUM=$(shasum package.json)
+fi
 PACKAGE_SHA=($SHASUM)
-echo "$NAME package.json SHA: $PACKAGE_SHA"
+echo "$NAME package dependencies file SHA: $PACKAGE_SHA"
 
 IMAGE_WITH_DEPS_NAME=dd-npm-deps-$NAME-$NODE_VERSION:$PACKAGE_SHA
 
