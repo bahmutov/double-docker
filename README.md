@@ -67,5 +67,7 @@ container. But having an actual *built* containe allows us one more trick - the 
 can be executed on *separate machine*. Thus you can keep working locally and when running
 the script, the built image could be pulled and executed from any other CI machine.
 
+## Removing extra containers and images
 
-
+Created docker containers and images are prefixed with `dd-`.
+To remove them, run the script [rm-docker-images.sh](rm-docker-images.sh)
