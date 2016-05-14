@@ -3,6 +3,18 @@
 > NPM installs goes into the base docker image (based on SHA of package.json)
 > Tests and builds are now both *repeatable and super fast*
 
+```
+local command                  Docker image
+
+node <version>          ---->  alpine/mhart-<version>
+                                     |
+package.json <SHASUM>                V
+npm install             ---->  dd-deps-<name>-<version>:<SHASUM>      clean, slow, rare
+                                     |
+src/                                 V
+npm test                ---->  dd-child-<name>-<version>              FAST, often
+```
+
 ## The problem
 
 The CI should build your project in isolation, thus it should run `npm install` from an empty
@@ -25,13 +37,17 @@ on each build, instead relying on previous contents cache.
 That's it. You can work locally like this, or put the commands on CI and the builds become
 very very fast.
 
+Don't forget to put `.dockerignore` file in the root of your project with `/node_modules`
+line to prevent copying the large folder for nothing.
+
 ## Available scripts
 
 Instead of running `npm install test` you can run [install-and-test.sh](install-and-test.sh)
 
 Instead of running `npm install build` you can run [install-and-build.sh](install-and-build.sh)
 
-To clear all containers and docker images run [utils/rm-docker-images.sh](utils/rm-docker-images.sh)
+To clear all containers and docker images run 
+[utils/rm-docker-images.sh](utils/rm-docker-images.sh)
 
 ## The timing
 
