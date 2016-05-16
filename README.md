@@ -65,6 +65,8 @@ Then set the following script commands to call double-docker's aliases
 ```json
 {
   "scripts": {
+    "build": "your current build command",
+    "test": "your current test command",
     "dd-build": "dd-build",
     "dd-test": "dd-test"
   }
