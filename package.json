@@ -1,19 +1,21 @@
 {
   "name": "double-docker",
-  "version": "1.0.0",
   "description": "Building NPM docker image in stages for faster NPM installs",
+  "version": "0.0.0-semantic-release",
   "main": "",
   "bin": {
     "dd-build": "./install-and-build.sh",
     "dd-test": "./install-and-test.sh"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "issues": "git-issues"
+    "test": "echo \"Hi there\"",
+    "issues": "git-issues",
+    "commit": "commit-wizard",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bahmutov/double-docker.git"
+    "url": "https://github.com/bahmutov/double-docker.git"
   },
   "keywords": [
     "docker",
@@ -31,6 +33,18 @@
   },
   "homepage": "https://github.com/bahmutov/double-docker#readme",
   "devDependencies": {
-    "git-issues": "1.2.0"
+    "git-issues": "1.2.0",
+    "pre-git": "3.8.4",
+    "semantic-release": "^4.3.5"
+  },
+  "config": {
+    "pre-git": {
+      "commit-msg": "simple",
+      "pre-commit": [],
+      "pre-push": [],
+      "post-commit": [],
+      "post-checkout": [],
+      "post-merge": []
+    }
   }
 }
