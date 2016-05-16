@@ -1,0 +1,36 @@
+{
+  "name": "double-docker",
+  "version": "1.0.0",
+  "description": "Building NPM docker image in stages for faster NPM installs",
+  "main": "",
+  "bin": {
+    "dd-build": "./install-and-build.sh",
+    "dd-test": "./install-and-test.sh"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "issues": "git-issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/double-docker.git"
+  },
+  "keywords": [
+    "docker",
+    "npm",
+    "node",
+    "build",
+    "image",
+    "speed",
+    "test"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/double-docker/issues"
+  },
+  "homepage": "https://github.com/bahmutov/double-docker#readme",
+  "devDependencies": {
+    "git-issues": "1.2.0"
+  }
+}
