@@ -45,13 +45,32 @@ very very fast.
 Don't forget to put `.dockerignore` file in the root of your project with `/node_modules`
 line to prevent copying the large folder for nothing.
 
-## Available scripts
+## Install and use
 
-Instead of running `npm install test` you can run [install-and-test.sh](install-and-test.sh)
+Once you have Docker on your local machine and CI, just add `double-docker` as your dev
+dependency
 
-Instead of running `npm install build` you can run [install-and-build.sh](install-and-build.sh)
+```sh
+npm i -D double-docker
+```
 
-To clear all containers and docker images run 
+Then set the following script commands to call double-docker's aliases
+
+```json
+{
+  "scripts": {
+    "dd-build": "dd-build",
+    "dd-test": "dd-test"
+  }
+}
+```
+
+`dd-test` will run the container and will call `npm test` with your code inside. 
+`dd-build` will run `npm run build`.
+
+## Additional scripts
+
+To clear all containers and docker images run `dd-rm` command which runs the
 [utils/rm-docker-images.sh](utils/rm-docker-images.sh)
 
 ## The timing

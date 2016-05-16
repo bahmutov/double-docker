@@ -5,7 +5,8 @@
   "main": "",
   "bin": {
     "dd-build": "./install-and-build.sh",
-    "dd-test": "./install-and-test.sh"
+    "dd-test": "./install-and-test.sh",
+    "dd-rm": "./utils/rm-docker-images.sh"
   },
   "files": [
     "docker-files",
