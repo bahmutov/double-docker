@@ -54,6 +54,12 @@ dependency
 npm i -D double-docker
 ```
 
+Create `.dockerignore` file in the root folder and at least ignore `node_modules` folder
+
+```sh
+echo "node_modules/">.dockerignore
+```
+
 Then set the following script commands to call double-docker's aliases
 
 ```json
