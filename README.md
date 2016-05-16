@@ -68,6 +68,23 @@ Then set the following script commands to call double-docker's aliases
 `dd-test` will run the container and will call `npm test` with your code inside. 
 `dd-build` will run `npm run build`.
 
+If you want to test in a different version of Node just run
+
+```sh
+npm run dd-test -- 4
+```
+
+Or add it to the `package.json` script command
+
+```json
+{
+  "scripts": {
+    "dd-build": "dd-build 4",
+    "dd-test": "dd-test 4"
+  }
+}
+```
+
 ## Additional scripts
 
 To clear all containers and docker images run `dd-rm` command which runs the
