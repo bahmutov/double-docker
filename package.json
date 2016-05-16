@@ -6,7 +6,8 @@
   "bin": {
     "dd-build": "./install-and-build.sh",
     "dd-test": "./install-and-test.sh",
-    "dd-rm": "./utils/rm-docker-images.sh"
+    "dd-rm": "./utils/rm-docker-images.sh",
+    "dd-get": "./get-built.sh"
   },
   "files": [
     "docker-files",

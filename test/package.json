@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
-    "build": "mkdir dist || true; cp index.js dist/bundle.js",
+    "build": "mkdir -p dist; cp index.js dist/bundle.js",
     "autochecker": "TEST_LIMIT=1 autochecker 0.12 --verbose",
     "dd-test": "dd-test",
     "dd-build": "dd-build"

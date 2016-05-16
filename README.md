@@ -68,7 +68,8 @@ Then set the following script commands to call double-docker's aliases
     "build": "your current build command",
     "test": "your current test command",
     "dd-build": "dd-build",
-    "dd-test": "dd-test"
+    "dd-test": "dd-test",
+    "dd-get": "dd-get dist"
   }
 }
 ```
@@ -92,6 +93,11 @@ Or add it to the `package.json` script command
   }
 }
 ```
+
+The `dd-get` command copies the built folder / file from the finished Docker container
+to local file system. This is the way to grab the results of the isolated build.
+
+`dd-get <folder name> <node version>`
 
 ## Additional scripts
 
