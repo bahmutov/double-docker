@@ -7,8 +7,8 @@
     "test": "node index.js",
     "build": "echo Building the bundle ... done!",
     "autochecker": "TEST_LIMIT=1 autochecker 0.12 --verbose",
-    "dd-test": "../install-and-test.sh",
-    "dd-build": "../install-and-build.sh"
+    "dd-test": "dd-test",
+    "dd-build": "dd-build"
   },
   "keywords": [],
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
@@ -17,6 +17,7 @@
     "babel": "6.5.2",
     "babel-cli": "6.8.0",
     "check-more-types": "2.21.0",
+    "double-docker": "1.0.0",
     "express": "4.13.4",
     "lazy-ass": "1.4.0",
     "mocha": "2.4.4"
