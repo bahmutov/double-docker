@@ -104,6 +104,14 @@ to local file system. This is the way to grab the results of the isolated build.
 To clear all containers and docker images run `dd-rm` command which runs the
 [utils/rm-docker-images.sh](utils/rm-docker-images.sh)
 
+## Custom NPM deps Docker template
+
+If you have file named `DockerNpmDepsTemplate` in the current folder, it will be used
+to create the Docker base image. A good example is 
+[test2/DockerNpmDepsTemplate](test2/DockerNpmDepsTemplate) file.
+
+Note that in this case the Node version should be defined in the docker template file.
+
 ## The timing
 
 Installing NPM dependencies takes a long time. For example here, with

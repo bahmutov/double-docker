@@ -16,6 +16,11 @@ if [ "$NODE_VERSION" == "" ]; then
   echo "Using default Node version $NODE_VERSION"
 fi
 
+if [ -f DockerNpmDepsTemplate ]; then
+  NODE_VERSION=
+  echo "Found Docker npm deps template file, no external node version then"
+fi
+
 # the folder with this script (for calling our utility scripts)
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
@@ -35,7 +40,11 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 #
 # running the built image
 #
-CONTAINER_NAME=dd-$NAME-$NODE_VERSION
+if [ "$NODE_VERSION" == "" ]; then
+  CONTAINER_NAME=dd-$NAME
+else
+  CONTAINER_NAME=dd-$NAME-$NODE_VERSION
+fi
 
 # . $DIR/utils/stop-container.sh
 
@@ -43,4 +52,5 @@ echo "Grabbing $FOLDER_NAME built in container $CONTAINER_NAME"
 rm -rf $FOLDER_NAME || true
 CONTAINER_PATH=/usr/src/app/$FOLDER_NAME
 docker cp $CONTAINER_NAME:$CONTAINER_PATH $FOLDER_NAME
-ls -R $FOLDER_NAME
+echo "Got the following files in $FOLDER_NAME"
+ls -lR $FOLDER_NAME

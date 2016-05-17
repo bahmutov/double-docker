@@ -8,6 +8,10 @@ if [ "$NODE_VERSION" == "" ]; then
   NODE_VERSION=6
   echo "Using default Node version $NODE_VERSION"
 fi
+if [ -f DockerNpmDepsTemplate ]; then
+  NODE_VERSION=
+  echo "Found Docker npm deps template file, no external node version then"
+fi
 
 # the folder with this script (for calling our utility scripts)
 SOURCE="${BASH_SOURCE[0]}"
@@ -28,7 +32,11 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 #
 # running the built image
 #
-CONTAINER_NAME=dd-$NAME-$NODE_VERSION
+if [ "$NODE_VERSION" == "" ]; then
+  CONTAINER_NAME=dd-$NAME
+else
+  CONTAINER_NAME=dd-$NAME-$NODE_VERSION
+fi
 
 . $DIR/utils/stop-container.sh
 
