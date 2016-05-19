@@ -6,6 +6,7 @@ if [ "$NODE_VERSION" == "" ]; then
 else
   IMAGE_WITH_DEPS_NAME=dd-npm-deps-$NAME-$NODE_VERSION:$PACKAGE_SHA
 fi
+echo "image with deps name $IMAGE_WITH_DEPS_NAME"
 
 EXISTING_IMAGE=$(docker images -q $IMAGE_WITH_DEPS_NAME)
 if [ "$EXISTING_IMAGE" == "" ]; then

@@ -1,3 +1,4 @@
 node_modules/
 DockerDepsTemp
 DockerTestFile
+.DS_Store
