@@ -4,6 +4,9 @@ set -e
 
 NAME=${PWD##*/}
 NODE_VERSION=$1
+if [ -f $NODE_VERSION ]; then
+  NODE_VERSION=
+fi
 if [ "$NODE_VERSION" == "" ]; then
   NODE_VERSION=6
   echo "Using default Node version $NODE_VERSION"

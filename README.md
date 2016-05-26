@@ -112,6 +112,24 @@ to create the Docker base image. A good example is
 
 Note that in this case the Node version should be defined in the docker template file.
 
+## Rebuilding base image
+
+By default, the base image is rebuilt if either `npm-shrinkwrap.json` or `package.json`
+SHA changes. You can provide list of filenames to use instead. For example, if you use
+custom Docker template file, you probably want to rebuild if that file changes too.
+
+```json
+{
+  "scripts": {
+    "dd-build": "dd-build 4 package.json DockerNpmDepsTemplate",
+    "dd-test": "dd-test 4 package.json DockerNpmDepsTemplate"
+  }
+}
+```
+
+Make sure to add the list of filenames to both the build and the test script commands (if you
+have two of them).
+
 ## The timing
 
 Installing NPM dependencies takes a long time. For example here, with
