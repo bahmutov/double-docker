@@ -15,7 +15,7 @@
     "utils"
   ],
   "scripts": {
-    "test": "echo \"Hi there\"",
+    "test": "./.git/hooks/pre-commit -f",
     "issues": "git-issues",
     "commit": "commit-wizard",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
