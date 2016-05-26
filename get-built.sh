@@ -4,22 +4,19 @@ set -e
 
 NAME=${PWD##*/}
 FOLDER_NAME=$1
+NODE_VERSION=$2
 
-if [ "$NODE_VERSION" == "" ]; then
+if [ "$FOLDER_NAME" == "" ]; then
   FOLDER_NAME="dist"
   echo "Will grab folder dist/"
-fi
-
-NODE_VERSION=$2
-if [ "$NODE_VERSION" == "" ]; then
-  NODE_VERSION=6
-  echo "Using default Node version $NODE_VERSION"
 fi
 
 if [ -f DockerNpmDepsTemplate ]; then
   NODE_VERSION=
   echo "Found Docker npm deps template file, no external node version then"
 fi
+
+echo "Grabbing $FOLDER_NAME"
 
 # the folder with this script (for calling our utility scripts)
 SOURCE="${BASH_SOURCE[0]}"

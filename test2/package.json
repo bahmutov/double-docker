@@ -7,8 +7,9 @@
     "test": "node index.js",
     "build": "mkdir -p dist; cp index.js dist/bundle.js",
     "autochecker": "TEST_LIMIT=1 autochecker 0.12 --verbose",
-    "dd-test": "dd-test",
-    "dd-build": "dd-build"
+    "dd-test": "../install-and-test.sh",
+    "dd-build": "../install-and-build.sh",
+    "dd-get": "../get-built.sh dist"
   },
   "keywords": [],
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
@@ -17,7 +18,6 @@
     "babel": "6.5.2",
     "babel-cli": "6.8.0",
     "check-more-types": "2.21.0",
-    "double-docker": "1.0.1",
     "express": "4.13.4",
     "lazy-ass": "1.4.0",
     "mocha": "2.4.4"
