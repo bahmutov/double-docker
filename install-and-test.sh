@@ -31,16 +31,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 . $DIR/utils/compute-sha.sh
 . $DIR/utils/build-base-image.sh
 . $DIR/utils/build-test-image.sh
-
-#
-# running the built image
-#
-if [ "$NODE_VERSION" == "" ]; then
-  CONTAINER_NAME=dd-$NAME
-else
-  CONTAINER_NAME=dd-$NAME-$NODE_VERSION
-fi
-
+. $DIR/utils/container-name.sh
 . $DIR/utils/stop-container.sh
 
 echo "Running the tests in the final docker"

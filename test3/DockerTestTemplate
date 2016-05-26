@@ -1,0 +1,7 @@
+# The test template should NOT have FROM line
+# It will be set from the unique NPM deps image
+WORKDIR /usr/src/app
+COPY package.json .
+COPY . .
+RUN npm run build
+CMD npm test

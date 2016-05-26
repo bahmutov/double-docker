@@ -104,13 +104,19 @@ to local file system. This is the way to grab the results of the isolated build.
 To clear all containers and docker images run `dd-rm` command which runs the
 [utils/rm-docker-images.sh](utils/rm-docker-images.sh)
 
-## Custom NPM deps Docker template
+## Custom Docker templates
 
 If you have file named `DockerNpmDepsTemplate` in the current folder, it will be used
 to create the Docker base image. A good example is 
 [test2/DockerNpmDepsTemplate](test2/DockerNpmDepsTemplate) file.
 
-Note that in this case the Node version should be defined in the docker template file.
+If you have file named `DockerTestTemplate` it will be used during the `dd-test` step.
+A good example is [test3/DockerTestTemplate](test3/DockerTestTemplate).
+
+**Important:** when using custom Docker template file, do not start with the `FROM` line.
+The `FROM <image>` line will be included automatically by the `double-docker`.
+
+When using the scripts, always assume the work directory is `WORKDIR /usr/src/app`
 
 ## Rebuilding base image
 
@@ -129,6 +135,15 @@ custom Docker template file, you probably want to rebuild if that file changes t
 
 Make sure to add the list of filenames to both the build and the test script commands (if you
 have two of them).
+
+## Examples
+
+See test subfolders for examples. These examples use the commands via script file names,
+and not via NPM script aliases.
+
+* [test](test) - simple project with defaults (uses NPM script aliases)
+* [test2](test2) - custom NPM dependencies Docker file template example
+* [test3](test3) - custom test step Docker file template example
 
 ## The timing
 

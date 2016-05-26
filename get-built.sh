@@ -30,20 +30,7 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 # echo "Script folder $DIR"
 
-# . $DIR/utils/compute-sha.sh
-# . $DIR/utils/build-base-image.sh
-# . $DIR/utils/build-build-image.sh
-
-#
-# running the built image
-#
-if [ "$NODE_VERSION" == "" ]; then
-  CONTAINER_NAME=dd-$NAME
-else
-  CONTAINER_NAME=dd-$NAME-$NODE_VERSION
-fi
-
-# . $DIR/utils/stop-container.sh
+. $DIR/utils/container-name.sh
 
 echo "Grabbing $FOLDER_NAME built in container $CONTAINER_NAME"
 rm -rf $FOLDER_NAME || true

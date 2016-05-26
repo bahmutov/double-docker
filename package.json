@@ -51,7 +51,8 @@
       "pre-commit": [
         "echo Testing double-docker by building test projects",
         "cd test; npm run dd-build; npm run dd-test",
-        "cd test2; npm run dd-build; npm run dd-test; npm run dd-get"
+        "cd test2; npm run dd-build; npm run dd-test; npm run dd-get",
+        "cd test3; npm run dd-test; npm run dd-get"
       ],
       "pre-push": [],
       "post-commit": [],

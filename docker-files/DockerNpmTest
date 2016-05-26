@@ -2,6 +2,6 @@
 # RUN mkdir -p /usr/src/app
 # assuming this folder already has been created by npm deps
 WORKDIR /usr/src/app
-COPY package.json .
 COPY . .
+CMD npm run build
 CMD npm test
